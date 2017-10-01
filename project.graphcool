@@ -1,0 +1,24 @@
+# project: cj862e74i01cf0112ti8ts1sk
+# version: 7
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Club implements Node {
+  id: ID! @isUnique
+  name: String!
+}

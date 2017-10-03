@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default () => (
-  <div>
-    Login. huh.
-  </div>
-)
+export default class Component extends React.Component {
+  render () {
+    return (
+      <div>
+        {this.props.name}
+      </div>
+    )
+  }
+}

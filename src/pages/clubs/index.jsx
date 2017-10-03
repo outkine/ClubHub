@@ -24,25 +24,24 @@ export default class Component extends React.Component {
     searchResults: [],
     activeResult: '',
     clubTypeFilter: {
-      culture: false,
-      arts: false,
-      dances: false,
-      academic: false,
-      politics: false,
-      sports: false
+      culture: true,
+      arts: true,
+      dances: true,
+      academic: true,
+      politics: true,
+      sports: true
     },
 
     dayFilter: {
-      monday: false,
-      tuesday: false,
-      wednesday: false,
-      thursday: false,
-      friday: false
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true
     }
   }
 
   render () {
-    console.log(this.state)
     if (this.props.data.loading) {
       return <div>Loading!</div>
     } else if (this.props.data.error) {

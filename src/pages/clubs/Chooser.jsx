@@ -6,7 +6,7 @@ export default ({choices, type, name, onChange, ...other}) => (
       choices.map((choice) => (
         <label key={choice}>
           {choice}
-          <input checked type={type} name={name} onChange={(event) => onChange(event, choice)} />
+          <input defaultChecked type={type} name={name} onChange={(event) => onChange(event, choice)} />
         </label>
       ))
     }

@@ -41,6 +41,12 @@ export default class Component extends React.Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.data.loading) {
+      this.state.searchResults = nextProps.data.allClubs
+    }
+  }
+
   render () {
     if (this.props.data.loading) {
       return <div>Loading!</div>
@@ -51,7 +57,7 @@ export default class Component extends React.Component {
     return (
       <div {...css(grid.col, rules.base)}>
         <div>
-          <input {...css(grid.horizontalCenter, rules.search)} value={this.state.search} onChange={(event) => this.search(event.target.value.toLowerCase())} />
+          <input {...css(grid.horizontalCenter, rules.search)} onChange={(event) => this.search(event.target.value.toLowerCase())} />
           <div {...grid.row}>
             <Chooser onChange={this.applyFilter} type='checkbox' name='clubTypeFilter' choices={Object.keys(this.state.clubTypeFilter)} />
             <Chooser onChange={this.applyFilter} type='checkbox' name='dayFilter' choices={Object.keys(this.state.dayFilter)} />
@@ -62,12 +68,12 @@ export default class Component extends React.Component {
 
         <ul>
           {
-            this.state.searchResults.map((name) => (
-              <li key={name}>
-                <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === name ? '' : name)})}>{name}</div>
+            this.state.searchResults.map((club) => (
+              <li key={club.name}>
+                <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
                 {
-                  this.state.activeResult === name ? (
-                    <ClubResult name={name} />
+                  this.state.activeResult === club.name ? (
+                    <ClubResult name={club.name} />
                   ) : ''
                 }
               </li>
@@ -81,18 +87,16 @@ export default class Component extends React.Component {
   search = (query) => {
     this.query = query
     this.state.searchResults = []
-    if (query) {
-      for (let club of this.props.data.allClubs) {
-        console.log(club.name.toLowerCase().includes(query),
-          this.doDaysAlign(club.days),
-          this.state.clubTypeFilter[club.type.toLowerCase()])
-        if (
-          club.name.toLowerCase().includes(query) &&
-          this.doDaysAlign(club.days) &&
-          this.state.clubTypeFilter[club.type.toLowerCase()]
-          ) {
-          this.state.searchResults.push(club.name)
-        }
+    for (let club of this.props.data.allClubs) {
+      console.log(club.name.toLowerCase().includes(query),
+        this.doDaysAlign(club.days),
+        this.state.clubTypeFilter[club.type.toLowerCase()])
+      if (
+        (!query || club.name.toLowerCase().includes(query)) &&
+        this.doDaysAlign(club.days) &&
+        this.state.clubTypeFilter[club.type.toLowerCase()]
+        ) {
+        this.state.searchResults.push(club)
       }
     }
     this.forceUpdate()

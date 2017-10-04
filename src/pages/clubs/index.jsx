@@ -6,7 +6,7 @@ import { grid, stylesheet } from 'shared/style'
 import { getEventValue } from 'shared/helpers'
 
 import ClubResult from './ClubResult'
-import Chooser from './Chooser'
+import Chooser from 'shared/CheckboxChooser'
 
 
 @graphql(gql`
@@ -59,8 +59,8 @@ export default class Component extends React.Component {
         <div>
           <input {...css(grid.horizontalCenter, rules.search)} onChange={(event) => this.search(event.target.value.toLowerCase())} />
           <div {...grid.row}>
-            <Chooser onChange={this.applyFilter} type='checkbox' name='clubTypeFilter' choices={Object.keys(this.state.clubTypeFilter)} />
-            <Chooser onChange={this.applyFilter} type='checkbox' name='dayFilter' choices={Object.keys(this.state.dayFilter)} />
+            <Chooser onChange={this.applyFilter} checked name='clubTypeFilter' choices={Object.keys(this.state.clubTypeFilter)} />
+            <Chooser onChange={this.applyFilter} checked name='dayFilter' choices={Object.keys(this.state.dayFilter)} />
           </div>
         </div>
 
@@ -102,8 +102,8 @@ export default class Component extends React.Component {
     this.forceUpdate()
   }
 
-  applyFilter = (event, filter) => {
-    this.state[event.target.name][filter] = getEventValue(event.target)
+  applyFilter = (event) => {
+    this.state[event.target.name][event.target.value] = getEventValue(event.target)
     this.search(this.query)
   }
 

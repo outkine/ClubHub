@@ -1,4 +1,3 @@
-export home from './home'
 export login from './login'
 export clubs from './clubs'
 export teachers from './teachers'

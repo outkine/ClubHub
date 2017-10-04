@@ -73,7 +73,7 @@ export default class Component extends React.Component {
                 <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
                 {
                   this.state.activeResult === club.name ? (
-                    <ClubResult name={club.name} />
+                    <ClubResult club={club} />
                   ) : ''
                 }
               </li>

@@ -3,6 +3,7 @@ import { graphql, gql } from 'react-apollo'
 import { css } from 'glamor'
 
 import { grid, stylesheet } from 'shared/style'
+import TeacherResult from './TeacherResult'
 
 @graphql(gql`
   query {
@@ -48,7 +49,7 @@ export default class Component extends React.Component {
                 <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === teacher.name ? '' : teacher.name)})}>{teacher.name}</div>
                 {
                   this.state.activeResult === teacher.name ? (
-                    <p>{teacher.name}</p>
+                    <TeacherResult teacher={teacher} />
                   ) : ''
                 }
               </li>

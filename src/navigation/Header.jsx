@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { css } from 'glamor'
 
-import { grid, theme } from 'shared/style'
+import { theme } from 'shared/style'
 
 export default ({children}) => (
-  <div {...css(theme.header, grid.row)}>
-    <Link {...theme.headerText} to='/clubs'>CLUBS</Link>
-    <Link {...theme.headerText} to='/teachers'>TEACHERS</Link>
-    <Link {...theme.headerText} to='/availability'>AVAILABILITY</Link>
+  <div {...theme.header}>
+    <Link {...(window.location.pathname === '/clubs' ? theme.activeHeader : {})} to='/clubs'>CLUBS</Link>
+    <Link {...(window.location.pathname === '/teachers' ? theme.activeHeader : {})} to='/teachers'>TEACHERS</Link>
+    <Link {...(window.location.pathname === '/availability' ? theme.activeHeader : {})} to='/availability'>AVAILABILITY</Link>
   </div>
 )

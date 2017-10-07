@@ -60,16 +60,23 @@ globals({
 export default stylesheet({
   header: {
     ...shadow,
+    ...grid.row,
     border: `3px solid ${colors.red}`,
-    padding: 10,
+
+    '& > *': {
+      width: '100%',
+      padding: 10,
+      color: colors.red,
+      ...fonts.bold,
+      textDecoration: 'none',
+      textAlign: 'center'
+    }
   },
 
-  headerText: {
-    color: colors.red,
-    ...fonts.bold,
-    textDecoration: 'none'
+  activeHeader: {
+    backgroundColor: colors.red,
+    color: colors.white
   },
-
 
   search: {
     ...box,

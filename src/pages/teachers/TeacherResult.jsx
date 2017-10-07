@@ -1,9 +1,8 @@
 import React from 'react'
 
-export default ({teacher}) => (
-  <div>
-    <p>{teacher.name}</p>
-    <p>clubs:</p>
+export default ({teacher, ...other}) => (
+  <div {...other}>
+    <b>clubs:</b>
     <ul>
       {
         teacher.clubs.map((club) => (

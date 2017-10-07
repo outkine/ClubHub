@@ -15,6 +15,11 @@ import Chooser from 'shared/CheckboxChooser'
       name
       days
       type
+      startTime
+      endTime
+      teacher {
+        name
+      }
     }
   }
 `)
@@ -51,8 +56,10 @@ export default class Component extends React.Component {
     if (this.props.data.loading) {
       return <div>Loading!</div>
     } else if (this.props.data.error) {
+      console.log(this.props.data.error)
       return <div>Error!</div>
     }
+    console.log(this.props.data.teacher)
 
     return (
       <div>
@@ -70,10 +77,10 @@ export default class Component extends React.Component {
           {
             this.state.searchResults.map((club) => (
               <li key={club.name}>
-                <div onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
+                <div {...theme.resultHeading} onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
                 {
                   this.state.activeResult === club.name ? (
-                    <ClubResult club={club} />
+                    <ClubResult {...theme.resultBody} club={club} />
                   ) : ''
                 }
               </li>

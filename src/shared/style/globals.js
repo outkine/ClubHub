@@ -1,28 +1,7 @@
 import { css } from 'glamor'
 
-function globals (definitions) {
+export default function (definitions) {
   Object.keys(definitions).forEach((key) => {
     css.global(key, definitions[key])
   })
 }
-
-globals({
-  'html, body, #app, [data-reactroot]': {
-    height: '100%'
-  },
-
-  body: {
-    margin: 0,
-    backgroundColor: '#F2EEE2'
-  },
-
-  ul: {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0
-  },
-
-  'input:focus': {
-    outline: 'none'
-  }
-})

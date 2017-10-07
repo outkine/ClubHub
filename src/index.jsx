@@ -14,6 +14,11 @@ const client = new ApolloClient({
   networkInterface: networkInterface
 })
 
+String.prototype.capitalize = function () {
+  console.log(this.charAt(0).toUpperCase() + this.slice(1))
+  return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase()
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <ApolloProvider client={client}>

@@ -1,5 +1,14 @@
 import grid from './grid'
 import stylesheet from './stylesheet'
+import globals from './globals'
+
+const colors = {
+  red: '#F81B84',
+  blue: '#43C0F6',
+  yellow: '#F5CE28',
+  white: '#F2EEE2',
+  black: '#1E1E1E'
+}
 
 const fonts = {
   regular: {
@@ -16,12 +25,6 @@ const shadow = {
   boxShadow: '0 0 5px 1px rgba(0, 0, 0, .3)'
 }
 
-const colors = {
-  red: '#F81B84',
-  blue: '#43C0F6',
-  yellow: '#F5CE28'
-}
-
 const box = {
   ...grid.horizontalCenter,
   ...fonts.regular,
@@ -32,6 +35,27 @@ const box = {
   fontSize: 20,
   padding: 10
 }
+
+globals({
+  'html, body, #app, [data-reactroot]': {
+    height: '100%'
+  },
+
+  body: {
+    margin: 0,
+    backgroundColor: colors.white
+  },
+
+  ul: {
+    listStyle: 'none',
+    padding: 0,
+    margin: 0
+  },
+
+  'input:focus': {
+    outline: 'none'
+  }
+})
 
 export default stylesheet({
   header: {
@@ -49,10 +73,11 @@ export default stylesheet({
 
   search: {
     ...box,
-    color: colors.yellow,
+    color: colors.black,
     border: '3px solid ' + colors.yellow,
     width: '90%',
-    marginTop: 50,
+    marginTop: 30,
+    backgroundColor: colors.white
   },
 
   searchOptions: {
@@ -89,8 +114,20 @@ export default stylesheet({
 
     '& > *': {
       ...box,
+      padding: 2,
       backgroundColor: colors.blue,
       marginBottom: 10
     }
   },
+
+  'resultHeading': {
+    padding: 10
+  },
+
+  'resultBody': {
+    padding: 5,
+    backgroundColor: colors.white,
+    textAlign: 'left',
+    color: 'black'
+  }
 })

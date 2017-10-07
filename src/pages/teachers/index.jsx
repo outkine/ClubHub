@@ -44,10 +44,10 @@ export default class Component extends React.Component {
           {
             this.state.searchResults.map((teacher) => (
               <li key={teacher.name}>
-                <div onClick={() => this.setState({activeResult: (this.state.activeResult === teacher.name ? '' : teacher.name)})}>{teacher.name}</div>
+                <div {...theme.resultHeading} onClick={() => this.setState({activeResult: (this.state.activeResult === teacher.name ? '' : teacher.name)})}>{teacher.name}</div>
                 {
                   this.state.activeResult === teacher.name ? (
-                    <TeacherResult teacher={teacher} />
+                    <TeacherResult {...theme.resultBody} teacher={teacher} />
                   ) : ''
                 }
               </li>

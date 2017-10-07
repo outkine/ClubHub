@@ -1,2 +1,5 @@
 export grid from './grid'
 export stylesheet from './stylesheet'
+export colors from './colors'
+export fonts from './fonts'
+export theme from './theme'

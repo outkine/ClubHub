@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, gql } from 'react-apollo'
 import { css } from 'glamor'
 
-import { grid, stylesheet } from 'shared/style'
+import { theme } from 'shared/style'
 import { getEventValue } from 'shared/helpers'
 
 import ClubResult from './ClubResult'
@@ -55,22 +55,22 @@ export default class Component extends React.Component {
     }
 
     return (
-      <div {...css(grid.col, rules.base)}>
+      <div>
         <div>
-          <input {...css(grid.horizontalCenter, rules.search)} onChange={(event) => this.search(event.target.value.toLowerCase())} />
-          <div {...grid.row}>
-            <Chooser onChange={this.applyFilter} checked name='clubTypeFilter' choices={Object.keys(this.state.clubTypeFilter)} />
-            <Chooser onChange={this.applyFilter} checked name='dayFilter' choices={Object.keys(this.state.dayFilter)} />
+          <input {...theme.search} onChange={(event) => this.search(event.target.value.toLowerCase())} />
+          <div {...theme.searchOptions}>
+            <Chooser {...theme.searchOption} onChange={this.applyFilter} checked name='clubTypeFilter' choices={Object.keys(this.state.clubTypeFilter)} />
+            <Chooser {...theme.searchOption} onChange={this.applyFilter} checked name='dayFilter' choices={Object.keys(this.state.dayFilter)} />
           </div>
         </div>
 
-        <div {...rules.divider} />
+        <div {...theme.divider} />
 
-        <ul>
+        <ul {...theme.results}>
           {
             this.state.searchResults.map((club) => (
               <li key={club.name}>
-                <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
+                <div onClick={() => this.setState({activeResult: (this.state.activeResult === club.name ? '' : club.name)})}>{club.name}</div>
                 {
                   this.state.activeResult === club.name ? (
                     <ClubResult club={club} />
@@ -117,18 +117,3 @@ export default class Component extends React.Component {
     return false
   }
 }
-
-const rules = stylesheet({
-  divider: {
-    width: '100%',
-    height: 1,
-    backgroundColor: 'gray',
-    margin: 10
-  },
-
-  searchResult: {
-    border: '1px solid black',
-    margin: '0 10px',
-    textAlign: 'center',
-  }
-})

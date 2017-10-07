@@ -1,6 +1,6 @@
 import stylesheet from './stylesheet'
 
-export default stylesheet({
+export default {
   "col": {
     "display": "flex",
     "justifyContent": "space-evenly",
@@ -53,4 +53,4 @@ export default stylesheet({
     "margin": "0 auto",
     "display": "block"
   }
-})
+}

@@ -11,9 +11,18 @@ globals({
     height: '100%'
   },
 
+  body: {
+    margin: 0,
+    backgroundColor: '#F2EEE2'
+  },
+
   ul: {
     listStyle: 'none',
     padding: 0,
     margin: 0
+  },
+
+  'input:focus': {
+    outline: 'none'
   }
 })

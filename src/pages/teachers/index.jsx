@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, gql } from 'react-apollo'
 import { css } from 'glamor'
 
-import { grid, stylesheet } from 'shared/style'
+import { theme } from 'shared/style'
 import TeacherResult from './TeacherResult'
 
 @graphql(gql`
@@ -35,18 +35,16 @@ export default class Component extends React.Component {
       return <div>Error!</div>
     }
 
-    console.log(this.state.searchResults)
-
     return (
       <div>
-        <input {...css(grid.horizontalCenter, rules.search)} onChange={(event) => this.search(event.target.value.toLowerCase())} />
-        <div {...rules.divider} />
+        <input {...theme.search} onChange={(event) => this.search(event.target.value.toLowerCase())} />
+        <div {...theme.divider} />
 
-        <ul>
+        <ul {...theme.results}>
           {
             this.state.searchResults.map((teacher) => (
               <li key={teacher.name}>
-                <div {...rules.searchResult} onClick={() => this.setState({activeResult: (this.state.activeResult === teacher.name ? '' : teacher.name)})}>{teacher.name}</div>
+                <div onClick={() => this.setState({activeResult: (this.state.activeResult === teacher.name ? '' : teacher.name)})}>{teacher.name}</div>
                 {
                   this.state.activeResult === teacher.name ? (
                     <TeacherResult teacher={teacher} />
@@ -74,18 +72,3 @@ export default class Component extends React.Component {
     this.forceUpdate()
   }
 }
-
-const rules = stylesheet({
-  divider: {
-    width: '100%',
-    height: 1,
-    backgroundColor: 'gray',
-    margin: 10
-  },
-
-  searchResult: {
-    border: '1px solid black',
-    margin: '0 10px',
-    textAlign: 'center',
-  }
-})

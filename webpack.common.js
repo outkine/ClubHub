@@ -2,7 +2,7 @@ var path = require('path')
 var autoprefixer = require('autoprefixer')
 
 var APP_DIR = path.resolve('src')
-var BUILD_DIR = path.resolve('www')
+var BUILD_DIR = path.resolve('docs')
 
 module.exports = {
   entry: ['babel-polyfill', path.resolve(APP_DIR, 'index.jsx')],

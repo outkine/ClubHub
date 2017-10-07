@@ -15,7 +15,6 @@ const client = new ApolloClient({
 })
 
 String.prototype.capitalize = function () {
-  console.log(this.charAt(0).toUpperCase() + this.slice(1))
   return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase()
 }
 

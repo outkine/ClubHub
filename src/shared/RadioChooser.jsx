@@ -13,8 +13,8 @@ export default class Component extends React.Component {
         {
           choices.map((choice) => (
             <label key={choice}>
-              {choice}
               <input type='radio' value={choice} name={name} onChange={this.onChange} checked={choice === this.state.activeChoice} />
+              <span>{choice}</span>
             </label>
           ))
         }

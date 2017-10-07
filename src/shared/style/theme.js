@@ -13,23 +13,13 @@ const fonts = {
 }
 
 const shadow = {
-  boxShadow: '0 0 10px 1px rgba(0, 0, 0, .3)'
+  boxShadow: '0 0 5px 1px rgba(0, 0, 0, .3)'
 }
 
 const colors = {
   red: '#F81B84',
   blue: '#43C0F6',
   yellow: '#F5CE28'
-}
-
-const button = {
-  ':hover': {
-    filter: 'brightness(0.9)'
-  },
-
-  ':active': {
-    boxShadow: 'inset ' + shadow.boxShadow
-  }
 }
 
 const box = {
@@ -44,44 +34,6 @@ const box = {
 }
 
 export default stylesheet({
-  search: {
-    ...box,
-    backgroundColor: colors.yellow,
-    width: '100%',
-    marginTop: 50,
-  },
-
-  searchOptions: {
-    ...box,
-    ...grid.row,
-    backgroundColor: colors.yellow,
-    width: '80%',
-    marginTop: 10,
-
-    '& label': {
-      ...button,
-      margin: 5
-    },
-
-    '& input': {
-      display: 'none'
-    }
-  },
-
-  divider: {
-    width: '100%',
-    height: 1,
-    backgroundColor: 'gray',
-    margin: 10
-  },
-
-  'results': {
-    '& > *': {
-      ...box,
-      backgroundColor: colors.blue,
-    }
-  },
-
   header: {
     ...shadow,
     border: `3px solid ${colors.red}`,
@@ -92,5 +44,53 @@ export default stylesheet({
     color: colors.red,
     ...fonts.bold,
     textDecoration: 'none'
-  }
+  },
+
+
+  search: {
+    ...box,
+    color: colors.yellow,
+    border: '3px solid ' + colors.yellow,
+    width: '90%',
+    marginTop: 50,
+  },
+
+  searchOptions: {
+    ...box,
+    ...grid.row,
+    backgroundColor: colors.yellow,
+    marginTop: 10,
+    width: '90%',
+
+    '& input + span': {
+      backgroundColor: colors.yellow,
+      margin: 8,
+      border: '2px solid white',
+      padding: 3,
+      fontSize: 15,
+      userSelect: 'none'
+    },
+
+    '& input:checked + span': {
+      backgroundColor: 'white',
+      color: colors.yellow
+    },
+
+    '& input': {
+      display: 'none'
+    }
+  },
+
+  'results': {
+    ...grid.horizontalCenter,
+    width: '80%',
+    marginTop: 30,
+    userSelect: 'none',
+
+    '& > *': {
+      ...box,
+      backgroundColor: colors.blue,
+      marginBottom: 10
+    }
+  },
 })
